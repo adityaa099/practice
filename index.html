@@ -1,60 +1,258 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <title>Student Details</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Student Information Portal</title>
+  <style>
+    body {
+      font-family: "Segoe UI", sans-serif;
+      background: linear-gradient(135deg, #e3f2fd, #e8eaf6);
+      margin: 0;
+      padding: 0;
+      color: #222;
+    }
+
+    header {
+      background-color: #0d47a1;
+      color: white;
+      padding: 10px;
+      text-align: center;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 15px;
+    }
+
+    header img {
+      height: 60px;
+      width: 60px;
+      border-radius: 10px;
+      border: 2px solid white;
+    }
+
+    header h1 {
+      margin: 0;
+      font-size: 1.8rem;
+    }
+
+    img.profile {
+      display: block;
+      margin: 20px auto;
+      border-radius: 50%;
+      border: 3px solid #0d47a1;
+    }
+
+    nav {
+      text-align: center;
+      background-color: #1976d2;
+      padding: 10px 0;
+    }
+
+    nav button {
+      background-color: #2196f3;
+      border: none;
+      color: white;
+      padding: 10px 20px;
+      margin: 0 5px;
+      cursor: pointer;
+      border-radius: 8px;
+      font-size: 15px;
+    }
+
+    nav button:hover {
+      background-color: #0d47a1;
+    }
+
+    .container {
+      max-width: 800px;
+      background: white;
+      margin: 20px auto;
+      padding: 25px 30px;
+      border-radius: 10px;
+      box-shadow: 0px 2px 10px rgba(0,0,0,0.2);
+    }
+
+    h2 {
+      color: #1565c0;
+      border-bottom: 2px solid #bbdefb;
+      padding-bottom: 5px;
+    }
+
+    label {
+      font-weight: bold;
+    }
+
+    input, textarea {
+      width: 100%;
+      padding: 8px;
+      margin-top: 5px;
+      margin-bottom: 15px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      font-size: 15px;
+    }
+
+    input[type="submit"], input[type="reset"] {
+      width: 48%;
+      background-color: #0d47a1;
+      color: white;
+      border: none;
+      padding: 10px;
+      cursor: pointer;
+      border-radius: 6px;
+      font-weight: bold;
+    }
+
+    input[type="submit"]:hover, input[type="reset"]:hover {
+      background-color: #1565c0;
+    }
+
+    .semester {
+      display: none;
+    }
+
+    .semester.active {
+      display: block;
+    }
+
+    footer {
+      text-align: center;
+      padding: 15px;
+      background: #0d47a1;
+      color: white;
+      margin-top: 20px;
+    }
+  </style>
 </head>
 <body>
-    <h1>Student Information Form</h1>
 
-    <img src="https://upload.wikimedia.org/wikipedia/commons/7/70/User_icon_BLACK-01.png" alt="ironman" height="100px" width="100px">
+  <!-- Header with logo -->
+  <header>
+    <img src="https://static.theprint.in/wp-content/uploads/2023/04/ANI-20230418122322.jpg?compress=true&quality=80&w=376&dpr=2.6" alt="Institute Logo">
+    <h1>Student Information Portal</h1>
+  </header>
 
+  <!-- Student profile image -->
+  <img src="https://upload.wikimedia.org/wikipedia/commons/7/70/User_icon_BLACK-01.png" alt="Student" class="profile" height="120px" width="120px">
 
-    <form>
-        <label for="name">Name:</label><br>
-        <input type="text" id="name" name="name"><br><br>
+  <!-- Navigation bar -->
+  <nav>
+    <button onclick="showSemester(1)">Semester 1</button>
+    <button onclick="showSemester(2)">Semester 2</button>
+    <button onclick="showSemester(3)">Semester 3</button>
+  </nav>
 
-        <label for="rollno">Roll No:</label><br>
-        <input type="text" id="rollno" name="rollno"><br><br>
+  <!-- Main form -->
+  <div class="container">
+    <form id="studentForm">
+      <h2>Student Details</h2>
 
-        <label for="address">Address:</label><br>
-        <textarea id="address" name="address" rows="3" cols="30"></textarea><br><br>
+      <label>Name:</label>
+      <input type="text" name="name" placeholder="Enter Name">
 
-        <label for="semester">Semester:</label><br>
-        <input type="number" id="semester" name="semester" min="1" max="8"><br><br>
+      <label>Roll No:</label>
+      <input type="text" name="rollno" placeholder="Enter Roll No">
 
-        <label for="cgpa">CGPA:</label><br>
-        <input type="number" id="cgpa" name="cgpa" step="0.01" min="0" max="10"><br><br>
+      <label>Address:</label>
+      <textarea name="address" rows="3" placeholder="Enter Address"></textarea>
 
-        <input type="submit" value="Submit">
-        <input type="reset" value="Clear">
-        <hr>
-        <h3>Subjects (5)</h3>
+      <label>Semester:</label>
+      <input type="number" name="semester" min="1" max="8" placeholder="Current Semester">
 
-        <label>Subject 1:</label><br>
-        <input type="text" name="sub1" placeholder="Subject Name">
-        <input type="number" name="mark1" placeholder="Marks" min="0" max="100"><br><br>
+      <label>CGPA:</label>
+      <input type="number" name="cgpa" step="0.01" min="0" max="10" placeholder="Enter CGPA">
 
-        <label>Subject 2:</label><br>
-        <input type="text" name="sub2" placeholder="Subject Name">
-        <input type="number" name="mark2" placeholder="Marks" min="0" max="100"><br><br>
+      <hr>
 
-        <label>Subject 3:</label><br>
-        <input type="text" name="sub3" placeholder="Subject Name">
-        <input type="number" name="mark3" placeholder="Marks" min="0" max="100"><br><br>
+      <!-- Semester 1 -->
+      <div id="sem1" class="semester active">
+        <h2>Semester 1 Subjects</h2>
+        <label>Subject 1:</label>
+        <input type="text" placeholder="Subject Name">
+        <input type="number" placeholder="Marks (0-100)" min="0" max="100">
 
-        <label>Subject 4:</label><br>
-        <input type="text" name="sub4" placeholder="Subject Name">
-        <input type="number" name="mark4" placeholder="Marks" min="0" max="100"><br><br>
+        <label>Subject 2:</label>
+        <input type="text" placeholder="Subject Name">
+        <input type="number" placeholder="Marks (0-100)" min="0" max="100">
 
-        <label>Subject 5:</label><br>
-        <input type="text" name="sub5" placeholder="Subject Name">
-        <input type="number" name="mark5" placeholder="Marks" min="0" max="100"><br><br>
+        <label>Subject 3:</label>
+        <input type="text" placeholder="Subject Name">
+        <input type="number" placeholder="Marks (0-100)" min="0" max="100">
 
-        <hr>
-        <input type="submit" value="Submit">
-        <input type="reset" value="Clear">
-   
+        <label>Subject 4:</label>
+        <input type="text" placeholder="Subject Name">
+        <input type="number" placeholder="Marks (0-100)" min="0" max="100">
+
+        <label>Subject 5:</label>
+        <input type="text" placeholder="Subject Name">
+        <input type="number" placeholder="Marks (0-100)" min="0" max="100">
+      </div>
+
+      <!-- Semester 2 -->
+      <div id="sem2" class="semester">
+        <h2>Semester 2 Subjects</h2>
+        <label>Subject 1:</label>
+        <input type="text" placeholder="Subject Name">
+        <input type="number" placeholder="Marks (0-100)" min="0" max="100">
+
+        <label>Subject 2:</label>
+        <input type="text" placeholder="Subject Name">
+        <input type="number" placeholder="Marks (0-100)" min="0" max="100">
+
+        <label>Subject 3:</label>
+        <input type="text" placeholder="Subject Name">
+        <input type="number" placeholder="Marks (0-100)" min="0" max="100">
+
+        <label>Subject 4:</label>
+        <input type="text" placeholder="Subject Name">
+        <input type="number" placeholder="Marks (0-100)" min="0" max="100">
+
+        <label>Subject 5:</label>
+        <input type="text" placeholder="Subject Name">
+        <input type="number" placeholder="Marks (0-100)" min="0" max="100">
+      </div>
+
+      <!-- Semester 3 -->
+      <div id="sem3" class="semester">
+        <h2>Semester 3 Subjects</h2>
+        <label>Subject 1:</label>
+        <input type="text" placeholder="Subject Name">
+        <input type="number" placeholder="Marks (0-100)" min="0" max="100">
+
+        <label>Subject 2:</label>
+        <input type="text" placeholder="Subject Name">
+        <input type="number" placeholder="Marks (0-100)" min="0" max="100">
+
+        <label>Subject 3:</label>
+        <input type="text" placeholder="Subject Name">
+        <input type="number" placeholder="Marks (0-100)" min="0" max="100">
+
+        <label>Subject 4:</label>
+        <input type="text" placeholder="Subject Name">
+        <input type="number" placeholder="Marks (0-100)" min="0" max="100">
+
+        <label>Subject 5:</label>
+        <input type="text" placeholder="Subject Name">
+        <input type="number" placeholder="Marks (0-100)" min="0" max="100">
+      </div>
+
+      <hr>
+      <input type="submit" value="Submit">
+      <input type="reset" value="Clear">
     </form>
+  </div>
 
+  <footer>
+    <p>© 2025 Student Information Portal | Designed by Aditya</p>
+  </footer>
+
+  <script>
+    function showSemester(n) {
+      const allSemesters = document.querySelectorAll('.semester');
+      allSemesters.forEach(s => s.classList.remove('active'));
+      document.getElementById(`sem${n}`).classList.add('active');
+    }
+  </script>
 </body>
 </html>
